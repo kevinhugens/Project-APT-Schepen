@@ -1,10 +1,10 @@
 package com.example.schepen.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Schip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,18 +14,16 @@ public class Schip {
     private int capaciteit;
     private String startLocatie;
     private String eindLocatie;
-    private List<Container> containers;
     private int rederijId;
 
     public Schip() {
     }
 
-    public Schip(String name, int capaciteit, String startLocatie, String eindLocatie, List<Container> containers, int rederijId) {
+    public Schip(String name, int capaciteit, String startLocatie, String eindLocatie, int rederijId) {
         this.name = name;
         this.capaciteit = capaciteit;
         this.startLocatie = startLocatie;
         this.eindLocatie = eindLocatie;
-        this.containers = containers;
         this.rederijId = rederijId;
     }
 
@@ -67,14 +65,6 @@ public class Schip {
 
     public void setCapaciteit(int capaciteit) {
         this.capaciteit = capaciteit;
-    }
-
-    public List<Container> getContainers() {
-        return containers;
-    }
-
-    public void setContainers(List<Container> containers) {
-        this.containers = containers;
     }
 
     public int getRederijId() {

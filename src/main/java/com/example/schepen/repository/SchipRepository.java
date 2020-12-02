@@ -1,6 +1,5 @@
 package com.example.schepen.repository;
 
-import com.example.schepen.model.Container;
 import com.example.schepen.model.Schip;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
