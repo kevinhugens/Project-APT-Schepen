@@ -3,11 +3,9 @@ package com.example.schepen.controller;
 import com.example.schepen.model.Schip;
 import com.example.schepen.repository.SchipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -17,9 +15,14 @@ public class SchipController {
     @Autowired
     private SchipRepository schipRepository;
 
+//    @GetMapping("/schepen/naam/{naam}")
+//    public List<Schip> getSchepenByName(@PathVariable String naam){
+//        return schipRepository.getAllByName(naam);
+//    }
+
     @GetMapping("/schepen/naam/{naam}")
-    public List<Schip> getSchepenByName(@PathVariable String naam){
-        return schipRepository.getAllByName(naam);
+    public Schip getSchipByNaam(@PathVariable String naam) {
+        return schipRepository.getByName(naam);
     }
 
     @GetMapping("/schepen/startlocatie/{locatie}")
