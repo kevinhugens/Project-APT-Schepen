@@ -15,9 +15,14 @@ public class SchipController {
     @Autowired
     private SchipRepository schipRepository;
 
+//    @GetMapping("/schepen/naam/{naam}")
+//    public List<Schip> getSchepenByName(@PathVariable String naam){
+//        return schipRepository.getAllByName(naam);
+//    }
+
     @GetMapping("/schepen/naam/{naam}")
-    public List<Schip> getSchepenByName(@PathVariable String naam){
-        return schipRepository.getAllByName(naam);
+    public Schip getSchipByNaam(@PathVariable String naam) {
+        return schipRepository.getByName(naam);
     }
 
     @GetMapping("/schepen/startlocatie/{locatie}")
