@@ -31,4 +31,52 @@ public class Schip {
         this.eindLocatie = eindLocatie;
         this.rederijId = rederijId;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCapaciteit() {
+        return capaciteit;
+    }
+
+    public void setCapaciteit(int capaciteit) {
+        this.capaciteit = capaciteit;
+    }
+
+    public String getStartLocatie() {
+        return startLocatie;
+    }
+
+    public void setStartLocatie(String startLocatie) {
+        this.startLocatie = startLocatie;
+    }
+
+    public String getEindLocatie() {
+        return eindLocatie;
+    }
+
+    public void setEindLocatie(String eindLocatie) {
+        this.eindLocatie = eindLocatie;
+    }
+
+    public int getRederijId() {
+        return rederijId;
+    }
+
+    public void setRederijId(int rederijId) {
+        this.rederijId = rederijId;
+    }
 }

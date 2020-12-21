@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface SchipRepository extends JpaRepository<Schip, Integer> {
     Schip getByName(String name);
-    List<Schip> getAllByName(String name);
     List<Schip> getAllByStartLocatie(String locatie);
     List<Schip> getAllByEindLocatie(String locatie);
 }
