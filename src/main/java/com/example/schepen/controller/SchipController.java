@@ -2,6 +2,7 @@ package com.example.schepen.controller;
 
 import com.example.schepen.model.Schip;
 import com.example.schepen.repository.SchipRepository;
+import com.example.schepen.service.SchipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class SchipController {
     @Autowired
     private SchipRepository schipRepository;
 
+    @Autowired
+    private SchipService schipService;
+
 //    @GetMapping("/schepen/naam/{naam}")
 //    public List<Schip> getSchepenByName(@PathVariable String naam){
 //        return schipRepository.getAllByName(naam);
@@ -21,34 +25,36 @@ public class SchipController {
 
     @GetMapping("/schepen/naam/{naam}")
     public Schip getSchipByNaam(@PathVariable String naam) {
-        return schipRepository.getByName(naam);
+//        return schipRepository.getByName(naam);
+        return schipService.getSchipByNaam(naam);
     }
 
     @GetMapping("/schepen/startlocatie/{locatie}")
     public List<Schip> getSchepenByStartlocatie(@PathVariable String locatie){
-        return schipRepository.getAllByStartLocatie(locatie);
+//        return schipRepository.getAllByStartLocatie(locatie);
+        return schipService.getSchepenByStartlocatie(locatie);
     }
 
     @GetMapping("/schepen/eindlocatie/{locatie}")
     public List<Schip> getSchepenByEindlocatie(@PathVariable String locatie){
-        return schipRepository.getAllByEindLocatie(locatie);
+//        return schipRepository.getAllByEindLocatie(locatie);
+        return schipService.getSchepenByEindLocatie(locatie);
     }
 
     @PutMapping("/schepen")
     public Schip updateSchip(@RequestBody Schip schip) {
-        Schip retrievedSchip = schipRepository.findById(schip.getId()).get();
-        retrievedSchip.setCapaciteit(schip.getCapaciteit());
-        retrievedSchip.setEindLocatie(schip.getEindLocatie());
-        retrievedSchip.setStartLocatie(schip.getStartLocatie());
-        retrievedSchip.setRederijId(schip.getRederijId());
-        retrievedSchip.setName(schip.getName());
-        schipRepository.save(retrievedSchip);
+        // return schipRepository.save(schip);
+        Schip retrievedSchip;
+
+        retrievedSchip = schipService.updateSchip(schip);
+
         return retrievedSchip;
     }
 
     @PostMapping("/schepen")
     public Schip addNewSchip(@RequestBody Schip schip) {
-        schipRepository.save(schip);
+//        return schipRepository.save(schip);
+        schipService.insertSchip(schip);
         return schip;
     }
 
