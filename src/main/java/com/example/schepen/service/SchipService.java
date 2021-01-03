@@ -20,6 +20,10 @@ public class SchipService {
         return schip;
     }
 
+    public List<Schip> getAllSchips() {
+        return schipRepository.findAll();
+    }
+
     public List<Schip> getSchepenByStartlocatie(String startLocatie) {
         List<Schip> schips;
         schips = schipRepository.getAllByStartLocatie(startLocatie);
@@ -29,6 +33,12 @@ public class SchipService {
     public List<Schip> getSchepenByEindLocatie(String eindLocatie) {
         List<Schip> schips;
         schips = schipRepository.getAllByEindLocatie(eindLocatie);
+        return schips;
+    }
+
+    public List<Schip> getSchepenByRederijId(int rederijID) {
+        List<Schip> schips;
+        schips = schipRepository.getSchipsByRederijId(rederijID);
         return schips;
     }
 

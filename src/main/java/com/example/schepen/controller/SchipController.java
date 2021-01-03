@@ -12,6 +12,8 @@ import java.util.List;
 
 @RestController
 public class SchipController {
+
+
     @Autowired
     private SchipRepository schipRepository;
 
@@ -23,6 +25,11 @@ public class SchipController {
 //        return schipRepository.getAllByName(naam);
 //    }
 
+    @GetMapping("/schepen")
+    public List<Schip> getAllSchips() {
+        return schipService.getAllSchips();
+    }
+
     @GetMapping("/schepen/naam/{naam}")
     public Schip getSchipByNaam(@PathVariable String naam) {
 //        return schipRepository.getByName(naam);
@@ -33,6 +40,11 @@ public class SchipController {
     public List<Schip> getSchepenByStartlocatie(@PathVariable String locatie){
 //        return schipRepository.getAllByStartLocatie(locatie);
         return schipService.getSchepenByStartlocatie(locatie);
+    }
+
+    @GetMapping("/schepen/rederij/{rederijID}")
+    public List<Schip> getSchepenByRederijID(@PathVariable int rederijID) {
+        return schipService.getSchepenByRederijId(rederijID);
     }
 
     @GetMapping("/schepen/eindlocatie/{locatie}")

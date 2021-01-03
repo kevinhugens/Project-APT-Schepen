@@ -11,4 +11,5 @@ public interface SchipRepository extends JpaRepository<Schip, Integer> {
     Schip getByName(String name);
     List<Schip> getAllByStartLocatie(String locatie);
     List<Schip> getAllByEindLocatie(String locatie);
+    List<Schip> getSchipsByRederijId(int rederijID);
 }
