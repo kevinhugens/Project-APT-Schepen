@@ -25,6 +25,12 @@ public class SchipController {
 //        return schipRepository.getAllByName(naam);
 //    }
 
+    @GetMapping("/schepen/{id}")
+    public Schip getContainerById(
+            @PathVariable int id) {
+        return schipService.getBySchipId(id);
+    }
+
     @GetMapping("/schepen")
     public List<Schip> getAllSchips() {
         return schipService.getAllSchips();

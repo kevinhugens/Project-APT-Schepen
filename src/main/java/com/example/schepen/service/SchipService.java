@@ -20,6 +20,13 @@ public class SchipService {
         return schip;
     }
 
+    public Schip getBySchipId(int id) {
+        Schip schip;
+        schip = schipRepository.findById(id).orElseThrow();
+
+        return schip;
+    }
+
     public List<Schip> getAllSchips() {
         return schipRepository.findAll();
     }
