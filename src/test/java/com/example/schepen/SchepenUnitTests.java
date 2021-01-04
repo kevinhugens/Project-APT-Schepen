@@ -37,7 +37,7 @@ public class SchepenUnitTests {
     public void unitTestGetSchipByNaam() throws Exception {
         Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel",2);
 
-        given(schipRepository.getByName("USS Enterprise")).willReturn(schip1);
+        given(schipRepository.getByNaam("USS Enterprise")).willReturn(schip1);
 
         mockMvc.perform(get("/schepen/naam/{naam}", "USS Enterprise"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

@@ -16,7 +16,7 @@ public class Schip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+    private String naam;
     private int capaciteit;
     private String startLocatie;
     private String eindLocatie;
@@ -25,8 +25,8 @@ public class Schip {
     public Schip() {
     }
 
-    public Schip(String name, int capaciteit, String startLocatie, String eindLocatie, int rederijId) {
-        this.name = name;
+    public Schip(String naam, int capaciteit, String startLocatie, String eindLocatie, int rederijId) {
+        this.naam = naam;
         this.capaciteit = capaciteit;
         this.startLocatie = startLocatie;
         this.eindLocatie = eindLocatie;
@@ -41,12 +41,12 @@ public class Schip {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNaam() {
+        return naam;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNaam(String name) {
+        this.naam = name;
     }
 
     public int getCapaciteit() {

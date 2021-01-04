@@ -15,7 +15,7 @@ public class SchipService {
 
     public Schip getSchipByNaam(String naam) {
         Schip schip;
-        schip = schipRepository.getByName(naam);
+        schip = schipRepository.getByNaam(naam);
 
         return schip;
     }
@@ -56,7 +56,7 @@ public class SchipService {
         newSchip.setEindLocatie(schip.getEindLocatie());
         newSchip.setStartLocatie(schip.getStartLocatie());
         newSchip.setRederijId(schip.getRederijId());
-        newSchip.setName(schip.getName());
+        newSchip.setNaam(schip.getNaam());
 
         schipRepository.save(newSchip);
 
