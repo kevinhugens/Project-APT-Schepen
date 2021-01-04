@@ -35,7 +35,7 @@ public class SchepenUnitTests {
 
     @Test
     public void unitTestGetSchipByNaam() throws Exception {
-        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel",2);
+        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
 
         given(schipRepository.getByNaam("USS Enterprise")).willReturn(schip1);
 
@@ -46,16 +46,16 @@ public class SchepenUnitTests {
                 .andExpect(jsonPath("$.capaciteit", is(15)))
                 .andExpect(jsonPath("$.startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$.eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$.rederijId", is(2)));
+                .andExpect(jsonPath("$.rederijId", is("2")));
     }
 
     @Test
     public void unitTestGetSchepenByStartLocatie() throws Exception {
         List<Schip> schepen = new ArrayList<>();
-        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel",2);
-        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", 1);
-        Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", 3);
-        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", 2);
+        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
+        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
+        Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", "3");
+        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", "2");
 
         schepen.add(schip1);
         schepen.add(schip2);
@@ -72,21 +72,21 @@ public class SchepenUnitTests {
                 .andExpect(jsonPath("$[0].capaciteit", is(15)))
                 .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$[0].rederijId", is(2)))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
                 .andExpect(jsonPath("$[1].name", is("yamato")))
                 .andExpect(jsonPath("$[1].capaciteit", is(18)))
                 .andExpect(jsonPath("$[1].startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$[1].eindLocatie", is("Rotterdam")))
-                .andExpect(jsonPath("$[1].rederijId", is(3)));
+                .andExpect(jsonPath("$[1].rederijId", is("3")));
     }
 
     @Test
     public void testGetSchepenByEindLocatie() throws Exception {
         List<Schip> schepen = new ArrayList<>();
-        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel",2);
-        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", 1);
-        Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", 3);
-        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", 2);
+        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
+        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
+        Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", "3");
+        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", "2");
 
         schepen.add(schip1);
         schepen.add(schip2);
@@ -103,11 +103,11 @@ public class SchepenUnitTests {
                 .andExpect(jsonPath("$[0].capaciteit", is(15)))
                 .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$[0].rederijId", is(2)))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
                 .andExpect(jsonPath("$[1].name", is("Bismarck")))
                 .andExpect(jsonPath("$[1].capaciteit", is(25)))
                 .andExpect(jsonPath("$[1].startLocatie", is("Dessel")))
                 .andExpect(jsonPath("$[1].eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$[1].rederijId", is(1)));
+                .andExpect(jsonPath("$[1].rederijId", is("1")));
     }
 }

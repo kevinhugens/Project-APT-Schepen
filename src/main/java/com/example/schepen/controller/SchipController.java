@@ -48,9 +48,9 @@ public class SchipController {
         return schipService.getSchepenByStartlocatie(locatie);
     }
 
-    @GetMapping("/schepen/rederij/{rederijID}")
-    public List<Schip> getSchepenByRederijID(@PathVariable int rederijID) {
-        return schipService.getSchepenByRederijId(rederijID);
+    @GetMapping("/schepen/rederij/{id}")
+    public List<Schip> getSchepenByRederijID(@PathVariable String id) {
+        return schipService.getSchepenByRederijId(id);
     }
 
     @GetMapping("/schepen/eindlocatie/{locatie}")
@@ -91,8 +91,8 @@ public class SchipController {
     @PostConstruct
     public void fillDB() {
         if(schipRepository.count() == 0){
-            schipRepository.save(new Schip("Schip 1",500,"Antwerpen","New York",1));
-            schipRepository.save(new Schip("Schip 2",300,"Amsterdam","Parijs",1));
+            schipRepository.save(new Schip("Schip 1",500,"Antwerpen","New York","1"));
+            schipRepository.save(new Schip("Schip 2",300,"Amsterdam","Parijs","1"));
         }
     }
 }

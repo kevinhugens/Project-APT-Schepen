@@ -43,7 +43,7 @@ public class SchipService {
         return schips;
     }
 
-    public List<Schip> getSchepenByRederijId(int rederijID) {
+    public List<Schip> getSchepenByRederijId(String rederijID) {
         List<Schip> schips;
         schips = schipRepository.getSchipsByRederijId(rederijID);
         return schips;

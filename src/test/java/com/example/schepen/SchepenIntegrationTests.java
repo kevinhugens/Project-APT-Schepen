@@ -31,10 +31,10 @@ public class SchepenIntegrationTests {
     @Autowired
     private SchipRepository schipRepository;
 
-    private Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel",2);
-    private Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", 1);
-    private Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", 3);
-    private Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", 2);
+    private Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
+    private Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
+    private Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", "3");
+    private Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", "2");
 
     @BeforeEach
     public void beforeAllTests() {
@@ -62,7 +62,7 @@ public class SchepenIntegrationTests {
                 .andExpect(jsonPath("$.capaciteit", is(15)))
                 .andExpect(jsonPath("$.startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$.eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$.rederijId", is(2)));
+                .andExpect(jsonPath("$.rederijId", is("2")));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class SchepenIntegrationTests {
                 .andExpect(jsonPath("$[1].capaciteit", is(18)))
                 .andExpect(jsonPath("$[1].startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$[1].eindLocatie", is("Rotterdam")))
-                .andExpect(jsonPath("$[1].rederijId", is(3)));
+                .andExpect(jsonPath("$[1].rederijId", is("3")));
     }
 
     @Test
@@ -105,11 +105,11 @@ public class SchepenIntegrationTests {
                 .andExpect(jsonPath("$[0].capaciteit", is(15)))
                 .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$[0].rederijId", is(2)))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
                 .andExpect(jsonPath("$[1].name", is("Bismarck")))
                 .andExpect(jsonPath("$[1].capaciteit", is(25)))
                 .andExpect(jsonPath("$[1].startLocatie", is("Dessel")))
                 .andExpect(jsonPath("$[1].eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$[1].rederijId", is(1)));
+                .andExpect(jsonPath("$[1].rederijId", is("1")));
     }
 }
