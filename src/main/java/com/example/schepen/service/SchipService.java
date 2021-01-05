@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class SchipService {
 
+
     @Autowired
     private SchipRepository schipRepository;
 
@@ -34,18 +35,21 @@ public class SchipService {
     public List<Schip> getSchepenByStartlocatie(String startLocatie) {
         List<Schip> schips;
         schips = schipRepository.getAllByStartLocatie(startLocatie);
+
         return schips;
     }
 
     public List<Schip> getSchepenByEindLocatie(String eindLocatie) {
         List<Schip> schips;
         schips = schipRepository.getAllByEindLocatie(eindLocatie);
+
         return schips;
     }
 
     public List<Schip> getSchepenByRederijId(String rederijID) {
         List<Schip> schips;
         schips = schipRepository.getSchipsByRederijId(rederijID);
+
         return schips;
     }
 

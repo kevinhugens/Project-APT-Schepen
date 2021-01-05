@@ -12,6 +12,8 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class Schip {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

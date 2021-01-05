@@ -20,11 +20,6 @@ public class SchipController {
     @Autowired
     private SchipService schipService;
 
-//    @GetMapping("/schepen/naam/{naam}")
-//    public List<Schip> getSchepenByName(@PathVariable String naam){
-//        return schipRepository.getAllByName(naam);
-//    }
-
     @GetMapping("/schepen/{id}")
     public Schip getContainerById(
             @PathVariable int id) {
@@ -37,33 +32,32 @@ public class SchipController {
     }
 
     @GetMapping("/schepen/naam/{naam}")
-    public Schip getSchipByNaam(@PathVariable String naam) {
-//        return schipRepository.getByName(naam);
+    public Schip getSchipByNaam(
+            @PathVariable String naam) {
         return schipService.getSchipByNaam(naam);
     }
 
     @GetMapping("/schepen/startlocatie/{locatie}")
-    public List<Schip> getSchepenByStartlocatie(@PathVariable String locatie){
-//        return schipRepository.getAllByStartLocatie(locatie);
+    public List<Schip> getSchepenByStartlocatie(
+            @PathVariable String locatie){
         return schipService.getSchepenByStartlocatie(locatie);
     }
 
     @GetMapping("/schepen/rederij/{id}")
-    public List<Schip> getSchepenByRederijID(@PathVariable String id) {
+    public List<Schip> getSchepenByRederijID(
+            @PathVariable String id) {
         return schipService.getSchepenByRederijId(id);
     }
 
     @GetMapping("/schepen/eindlocatie/{locatie}")
-    public List<Schip> getSchepenByEindlocatie(@PathVariable String locatie){
-//        return schipRepository.getAllByEindLocatie(locatie);
+    public List<Schip> getSchepenByEindlocatie(
+            @PathVariable String locatie){
         return schipService.getSchepenByEindLocatie(locatie);
     }
 
     @PutMapping("/schepen")
     public Schip updateSchip(@RequestBody Schip schip) {
-        // return schipRepository.save(schip);
         Schip retrievedSchip;
-
         retrievedSchip = schipService.updateSchip(schip);
 
         return retrievedSchip;
@@ -71,7 +65,6 @@ public class SchipController {
 
     @PostMapping("/schepen")
     public Schip addNewSchip(@RequestBody Schip schip) {
-//        return schipRepository.save(schip);
         schipService.insertSchip(schip);
         return schip;
     }
@@ -79,7 +72,8 @@ public class SchipController {
     @DeleteMapping("/schepen/{id}")
     public ResponseEntity deleteSchip(@PathVariable Integer schipID) {
         Schip schip = schipRepository.findById(schipID).get();
-        if(schip != null) {
+
+        if (schip != null) {
             schipRepository.delete(schip);
             return ResponseEntity.ok().build();
         } else {
@@ -87,10 +81,9 @@ public class SchipController {
         }
     }
 
-
     @PostConstruct
     public void fillDB() {
-        if(schipRepository.count() == 0){
+        if (schipRepository.count() == 0){
             schipRepository.save(new Schip("Schip 1",500,"Antwerpen","New York","1"));
             schipRepository.save(new Schip("Schip 2",300,"Amsterdam","Parijs","1"));
         }
