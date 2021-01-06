@@ -69,16 +69,9 @@ public class SchipController {
         return schip;
     }
 
-    @DeleteMapping("/schepen/{id}")
-    public ResponseEntity deleteSchip(@PathVariable Integer schipID) {
-        Schip schip = schipRepository.findById(schipID).get();
-
-        if (schip != null) {
-            schipRepository.delete(schip);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/schepen/delete/{id}")
+    public void deleteSchip(@PathVariable int id) {
+        schipRepository.deleteById(id);
     }
 
     @PostConstruct
