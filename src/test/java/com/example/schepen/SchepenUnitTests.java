@@ -17,7 +17,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -109,5 +109,33 @@ public class SchepenUnitTests {
                 .andExpect(jsonPath("$[1].startLocatie", is("Dessel")))
                 .andExpect(jsonPath("$[1].eindLocatie", is("Geel")))
                 .andExpect(jsonPath("$[1].rederijId", is("1")));
+    }
+
+    @Test
+    public void testPostSchip() throws Exception {
+        Schip schipTest = new Schip("HMS Hood", 35, "Londen", "Kaapstad", "3");
+
+        mockMvc.perform(post("/containers/insert")
+                .content(mapper.writeValueAsString(schipTest))
+                .contentType("application/json"))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.schipId", is(2)))
+                .andExpect(jsonPath("$.gewicht", is(4300.00)))
+                .andExpect(jsonPath("$.inhoud", is("Tennisballen")))
+                .andExpect(jsonPath("$.startLocatie", is("Helsinki")))
+                .andExpect(jsonPath("$.eindLocatie", is("Amsterdam")))
+                .andExpect(jsonPath("$.serieCode", is("da57e")));
+    }
+
+    @Test
+    public void unitTestDeleteSchip() throws Exception {
+        Schip schip1 = new Schip("Schip 1",500,"Antwerpen","New York","1");
+
+        given(schipRepository.findById(1)).willReturn(java.util.Optional.of(schip1));
+
+        mockMvc.perform(delete("/schepen/delete/{id}", 1)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }

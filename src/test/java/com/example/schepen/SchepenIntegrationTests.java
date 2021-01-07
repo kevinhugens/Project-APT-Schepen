@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -111,5 +111,52 @@ public class SchepenIntegrationTests {
                 .andExpect(jsonPath("$[1].startLocatie", is("Dessel")))
                 .andExpect(jsonPath("$[1].eindLocatie", is("Geel")))
                 .andExpect(jsonPath("$[1].rederijId", is("1")));
+    }
+
+    @Test
+    public void testGetSchepenByRederijID() throws Exception {
+        List<Schip> schips = new ArrayList<>();
+        schips.add(schip1);
+        schips.add(schip2);
+        schips.add(schip3);
+        schips.add(schip4);
+
+        mockMvc.perform(get("/schepen/rederij/{id}", "2"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].name", is("USS Enterprise")))
+                .andExpect(jsonPath("$[0].capaciteit", is(15)))
+                .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
+                .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
+                .andExpect(jsonPath("$[1].name", is("USS Hornet")))
+                .andExpect(jsonPath("$[1].capaciteit", is(16)))
+                .andExpect(jsonPath("$[1].startLocatie", is("Geel")))
+                .andExpect(jsonPath("$[1].eindLocatie", is("Londen")))
+                .andExpect(jsonPath("$[1].rederijId", is("2")));
+    }
+
+    @Test
+    public void testPostSchip() throws Exception {
+        Schip schipTest = new Schip("HMS Hood", 35, "Londen", "Kaapstad", "3");
+
+        mockMvc.perform(post("/schepen/insert")
+                .content(mapper.writeValueAsString(schipTest))
+                .contentType("application/json"))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("HMS Hood")))
+                .andExpect(jsonPath("$.capaciteit", is(35)))
+                .andExpect(jsonPath("$.startLocatie", is("Londen")))
+                .andExpect(jsonPath("$.eindLocatie", is("Kaapstad")))
+                .andExpect(jsonPath("$.rederijId", is("3")));
+    }
+
+    @Test
+    public void testDeleteSchip() throws Exception {
+        mockMvc.perform(delete("/schepen/delete/{id}", 1)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
