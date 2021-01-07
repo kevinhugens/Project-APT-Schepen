@@ -55,7 +55,7 @@ public class SchipController {
         return schipService.getSchepenByEindLocatie(locatie);
     }
 
-    @PutMapping("/schepen")
+    @PutMapping("/schepen/update")
     public Schip updateSchip(@RequestBody Schip schip) {
         Schip retrievedSchip;
         retrievedSchip = schipService.updateSchip(schip);
@@ -63,7 +63,7 @@ public class SchipController {
         return retrievedSchip;
     }
 
-    @PostMapping("/schepen")
+    @PostMapping("/schepen/insert")
     public Schip addNewSchip(@RequestBody Schip schip) {
         schipService.insertSchip(schip);
         return schip;
