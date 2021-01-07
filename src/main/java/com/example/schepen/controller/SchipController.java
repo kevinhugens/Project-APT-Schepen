@@ -21,7 +21,7 @@ public class SchipController {
     private SchipService schipService;
 
     @GetMapping("/schepen/{id}")
-    public Schip getContainerById(
+    public Schip getSchipById(
             @PathVariable int id) {
         return schipService.getBySchipId(id);
     }
