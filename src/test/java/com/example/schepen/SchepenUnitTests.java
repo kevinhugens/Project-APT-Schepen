@@ -123,7 +123,7 @@ public class SchepenUnitTests {
         schips.add(schip4);
 
 
-        given(schipRepository.getSchipsByRederijId("3")).willReturn(schips);
+        given(schipRepository.getSchipsByRederijId("2")).willReturn(schips);
 
         mockMvc.perform(get("/schepen/rederij/{id}", "2"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
