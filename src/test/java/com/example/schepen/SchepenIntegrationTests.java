@@ -55,6 +55,7 @@ public class SchepenIntegrationTests {
     @Test
     public void testGetSchipByNaam() throws Exception {
 
+
         mockMvc.perform(get("/schepen/naam/{naam}", "USS Enterprise"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
