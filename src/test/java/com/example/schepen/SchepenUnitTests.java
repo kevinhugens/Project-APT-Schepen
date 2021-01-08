@@ -114,6 +114,34 @@ public class SchepenUnitTests {
     }
 
     @Test
+    public void testGetSchepenByRederijID() throws Exception {
+        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
+        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
+
+        List<Schip> schips = new ArrayList<>();
+        schips.add(schip1);
+        schips.add(schip2);
+
+
+        given(schipRepository.getAllByEindLocatie("Geel")).willReturn(schips);
+
+        mockMvc.perform(get("/schepen/rederij/{id}", "2"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].naam", is("USS Enterprise")))
+                .andExpect(jsonPath("$[0].capaciteit", is(15)))
+                .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
+                .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
+                .andExpect(jsonPath("$[1].naam", is("USS Hornet")))
+                .andExpect(jsonPath("$[1].capaciteit", is(16)))
+                .andExpect(jsonPath("$[1].startLocatie", is("Geel")))
+                .andExpect(jsonPath("$[1].eindLocatie", is("Londen")))
+                .andExpect(jsonPath("$[1].rederijId", is("2")));
+    }
+
+    @Test
     public void testPostSchip() throws Exception {
         Schip schipTest = new Schip("HMS Hood", 35, "Londen", "Kaapstad", "3");
 
