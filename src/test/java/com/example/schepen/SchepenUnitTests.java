@@ -43,7 +43,7 @@ public class SchepenUnitTests {
         mockMvc.perform(get("/schepen/naam/{naam}", "USS Enterprise"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("USS Enterprise")))
+                .andExpect(jsonPath("$.naam", is("USS Enterprise")))
                 .andExpect(jsonPath("$.capaciteit", is(15)))
                 .andExpect(jsonPath("$.startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$.eindLocatie", is("Geel")))
@@ -63,7 +63,12 @@ public class SchepenUnitTests {
         schepen.add(schip3);
         schepen.add(schip4);
 
-        given(schipRepository.getAllByStartLocatie("Turnhout")).willReturn(schepen);
+        List<Schip> giveSchips = new ArrayList<>();
+
+        giveSchips.add(schip1);
+        giveSchips.add(schip3);
+
+        given(schipRepository.getAllByStartLocatie("Turnhout")).willReturn(giveSchips);
 
         mockMvc.perform(get("/schepen/startlocatie/{locatie}", "Turnhout"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
