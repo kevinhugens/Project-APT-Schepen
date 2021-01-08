@@ -91,13 +91,9 @@ public class SchepenUnitTests {
         List<Schip> schepen = new ArrayList<>();
         Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
         Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
-        Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", "3");
-        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", "2");
 
         schepen.add(schip1);
         schepen.add(schip2);
-        schepen.add(schip3);
-        schepen.add(schip4);
 
         given(schipRepository.getAllByEindLocatie("Geel")).willReturn(schepen);
 
@@ -124,7 +120,6 @@ public class SchepenUnitTests {
         mockMvc.perform(post("/containers/insert")
                 .content(mapper.writeValueAsString(schipTest))
                 .contentType("application/json"))
-                .andExpect(content().contentType("application/json"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.schipId", is(2)))
                 .andExpect(jsonPath("$.gewicht", is(4300.00)))

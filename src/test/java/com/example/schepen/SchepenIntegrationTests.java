@@ -82,7 +82,7 @@ public class SchepenIntegrationTests {
                 .andExpect(jsonPath("$[0].capaciteit", is(15)))
                 .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
                 .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
-                .andExpect(jsonPath("$[0].rederijId", is(2)))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
                 .andExpect(jsonPath("$[1].naam", is("yamato")))
                 .andExpect(jsonPath("$[1].capaciteit", is(18)))
                 .andExpect(jsonPath("$[1].startLocatie", is("Turnhout")))
