@@ -53,6 +53,40 @@ public class SchepenIntegrationTests {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
+    public void testGetAll() throws Exception {
+        List<Schip> schips = new ArrayList<>();
+        schips.add(schip1);
+        schips.add(schip2);
+        schips.add(schip3);
+        schips.add(schip4);
+
+        mockMvc.perform(get("/schepen"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].naam", is("USS Enterprise")))
+                .andExpect(jsonPath("$[0].capaciteit", is(15)))
+                .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
+                .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
+                .andExpect(jsonPath("$[1].naam", is("USS Hornet")))
+                .andExpect(jsonPath("$[1].capaciteit", is(16)))
+                .andExpect(jsonPath("$[1].startLocatie", is("Geel")))
+                .andExpect(jsonPath("$[1].eindLocatie", is("Londen")))
+                .andExpect(jsonPath("$[1].rederijId", is("2")))
+                .andExpect(jsonPath("$[2].naam", is("yamato")))
+                .andExpect(jsonPath("$[2].capaciteit", is(18)))
+                .andExpect(jsonPath("$[2].startLocatie", is("Turnhout")))
+                .andExpect(jsonPath("$[2].eindLocatie", is("Rotterdam")))
+                .andExpect(jsonPath("$[2].rederijId", is("3")))
+                .andExpect(jsonPath("$[3].naam", is("USS Hornet")))
+                .andExpect(jsonPath("$[3].capaciteit", is(16)))
+                .andExpect(jsonPath("$[3].startLocatie", is("Geel")))
+                .andExpect(jsonPath("$[3].eindLocatie", is("Londen")))
+                .andExpect(jsonPath("$[3].rederijId", is("2")));
+    }
+
+    @Test
     public void testGetSchipByNaam() throws Exception {
 
 

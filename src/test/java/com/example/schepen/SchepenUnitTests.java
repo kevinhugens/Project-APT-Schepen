@@ -116,14 +116,14 @@ public class SchepenUnitTests {
     @Test
     public void testGetSchepenByRederijID() throws Exception {
         Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
-        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
+        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", "2");
 
         List<Schip> schips = new ArrayList<>();
         schips.add(schip1);
-        schips.add(schip2);
+        schips.add(schip4);
 
 
-        given(schipRepository.getAllByEindLocatie("Geel")).willReturn(schips);
+        given(schipRepository.getSchipsByRederijId("3")).willReturn(schips);
 
         mockMvc.perform(get("/schepen/rederij/{id}", "2"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
