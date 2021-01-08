@@ -35,6 +35,46 @@ public class SchepenUnitTests {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
+    public void testGetAll() throws Exception {
+        List<Schip> schepen = new ArrayList<>();
+        Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
+        Schip schip2 = new Schip("Bismarck", 25, "Dessel", "Geel", "1");
+        Schip schip3 = new Schip("yamato", 18, "Turnhout", "Rotterdam", "3");
+        Schip schip4 = new Schip("USS Hornet", 16, "Geel", "Londen", "2");
+
+        schepen.add(schip1);
+        schepen.add(schip2);
+        schepen.add(schip3);
+        schepen.add(schip4);
+
+        given(schipRepository.findAll()).willReturn(schepen);
+
+        mockMvc.perform(get("/schepen"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$[0].naam", is("USS Enterprise")))
+                .andExpect(jsonPath("$[0].capaciteit", is(15)))
+                .andExpect(jsonPath("$[0].startLocatie", is("Turnhout")))
+                .andExpect(jsonPath("$[0].eindLocatie", is("Geel")))
+                .andExpect(jsonPath("$[0].rederijId", is("2")))
+                .andExpect(jsonPath("$[1].naam", is("Birsmarck")))
+                .andExpect(jsonPath("$[1].capaciteit", is(25)))
+                .andExpect(jsonPath("$[1].startLocatie", is("Dessel")))
+                .andExpect(jsonPath("$[1].eindLocatie", is("Geel")))
+                .andExpect(jsonPath("$[1].rederijId", is("1")))
+                .andExpect(jsonPath("$[2].naam", is("yamato")))
+                .andExpect(jsonPath("$[2].capaciteit", is(18)))
+                .andExpect(jsonPath("$[2].startLocatie", is("Turnhout")))
+                .andExpect(jsonPath("$[2].eindLocatie", is("Rotterdam")))
+                .andExpect(jsonPath("$[2].rederijId", is("3")))
+                .andExpect(jsonPath("$[3].naam", is("USS Hornet")))
+                .andExpect(jsonPath("$[3].capaciteit", is(16)))
+                .andExpect(jsonPath("$[3].startLocatie", is("Geel")))
+                .andExpect(jsonPath("$[3].eindLocatie", is("Londen")))
+                .andExpect(jsonPath("$[3].rederijId", is("2")));
+    }
+    @Test
     public void unitTestGetSchipByNaam() throws Exception {
         Schip schip1 = new Schip("USS Enterprise", 15, "Turnhout", "Geel","2");
 
